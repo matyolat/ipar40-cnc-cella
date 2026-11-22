@@ -1,0 +1,31 @@
+<mxfile host="drawio">
+  <diagram name="dfd0" id="d1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="0&lt;br&gt;&lt;b&gt;CNC-cella állapotfigyelő rendszer&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;ellipse;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="380" y="120" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="CNC-cella&lt;br&gt;(érzékelők, vezérlés)" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="Kezelő /&lt;br&gt;karbantartó" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="760" y="180" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="állapot, orsóhőmérséklet,&lt;br&gt;rezgés, darabszám" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=1;exitY=0.3;entryX=0;entryY=0.35;" edge="1" parent="1" source="c3" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="indítás / leállítás,&lt;br&gt;hibainjektálás" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=0;exitY=0.65;entryX=1;entryY=0.7;" edge="1" parent="1" source="c2" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="élő állapot, OEE-mutatók,&lt;br&gt;riasztások" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=1;exitY=0.35;entryX=0;entryY=0.3;" edge="1" parent="1" source="c2" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="kezelői parancsok" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=0;exitY=0.7;entryX=1;entryY=0.65;" edge="1" parent="1" source="c4" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

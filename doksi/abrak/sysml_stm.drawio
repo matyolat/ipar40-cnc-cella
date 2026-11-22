@@ -1,0 +1,48 @@
+<mxfile host="drawio">
+  <diagram name="sysml_stm" id="d1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="&lt;b&gt;stm&lt;/b&gt; [block] CNC-cella [gépállapotok]" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;verticalAlign=top;align=left;spacingLeft=8;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="760" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;ellipse;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="60" y="95" width="24" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="&lt;b&gt;FUT&lt;/b&gt;&lt;hr&gt;do / megmunkálás,&lt;br&gt;melegedés" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;rounded=1;arcSize=30;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="160" y="70" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="&lt;b&gt;ÁLL&lt;/b&gt;&lt;hr&gt;do / hűlés 22 °C felé" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;rounded=1;arcSize=30;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="520" y="70" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="&lt;b&gt;HIBA&lt;/b&gt;&lt;hr&gt;entry / védelmi leállás" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;rounded=1;arcSize=30;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="340" y="270" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="c3" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="leallas / véletlen állás" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="1" source="c4" target="c5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="inditas / állás vége" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=0;exitY=0.75;entryX=1;entryY=0.75;" edge="1" parent="1" source="c5" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="[T &amp;gt; 90 °C]" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="c4" target="c6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c11" value="normal (nyugtázás)" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="c6" target="c5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

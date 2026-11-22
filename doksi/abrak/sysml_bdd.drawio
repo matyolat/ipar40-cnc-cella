@@ -1,0 +1,70 @@
+<mxfile host="drawio">
+  <diagram name="sysml_bdd" id="d1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="&lt;b&gt;bdd&lt;/b&gt; [csomag] CNC-cella állapotfigyelés [rendszerstruktúra]" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;verticalAlign=top;align=left;spacingLeft=8;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="1000" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="«block»&lt;br&gt;&lt;b&gt;CNC állapotfigyelő rendszer&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;values&lt;br&gt;mintavétel: 1 Hz&lt;br&gt;kpi_periódus: 5 s&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="395" y="45" width="220" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="«block»&lt;br&gt;&lt;b&gt;CNC-cella (szimulált)&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;values&lt;br&gt;ciklusidő: 30 s/db&lt;br&gt;állapot: {FUT, ÁLL, HIBA}&lt;br&gt;operations&lt;br&gt;lepes(dt), parancs(p)&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=11;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="20" y="220" width="220" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="«block»&lt;br&gt;&lt;b&gt;MQTT broker&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;values&lt;br&gt;port: 1883&lt;br&gt;keepalive (szim.): 5 s&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="270" y="220" width="200" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="«block»&lt;br&gt;&lt;b&gt;Feldolgozó&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;values&lt;br&gt;TIMEOUT: 5 s&lt;br&gt;operations&lt;br&gt;minta(m), kpi()&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="220" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="«block»&lt;br&gt;&lt;b&gt;Műszerfal&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;values&lt;br&gt;Node-RED 4, Dashboard 2.0&lt;br&gt;/dashboard/cella1&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="730" y="220" width="220" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c4" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c5" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c6" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c7" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="«block»&lt;br&gt;&lt;b&gt;Hőmérséklet-érzékelő&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;unit = °C&lt;br&gt;σ = 0,2 °C&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="10" y="420" width="115" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="«block»&lt;br&gt;&lt;b&gt;Rezgésérzékelő&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;unit = mm/s (RMS)&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="130" y="420" width="115" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="«block»&lt;br&gt;&lt;b&gt;Darabszámláló&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;unit = db&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=10;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="250" y="420" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c12" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c13" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c14" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="«block»&lt;br&gt;&lt;b&gt;CellaFigyelo&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;tervezett_ido, futasi_ido&lt;br&gt;darab, selejt&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="420" y="420" width="140" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="«block»&lt;br&gt;&lt;b&gt;Hatarertek&lt;/b&gt;&lt;hr&gt;&lt;div style='text-align:left'&gt;hatar, hiszterezis&lt;br&gt;aktiv: bool&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="640" y="420" width="130" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="c18" target="c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="2" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=diamondThin;endFill=1;endSize=14;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="c19" target="c18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

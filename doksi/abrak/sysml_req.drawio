@@ -1,0 +1,160 @@
+<mxfile host="drawio">
+  <diagram name="sysml_req" id="d1">
+    <mxGraphModel grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="&lt;b&gt;req&lt;/b&gt; [csomag] CNC-cella állapotfigyelés [követelmények]" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;verticalAlign=top;align=left;spacingLeft=8;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="1140" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="«requirement»&lt;br&gt;&lt;b&gt;Állapotfigyelés&lt;/b&gt;&lt;hr&gt;id = K0&lt;br&gt;text = A cella állapota és&lt;br&gt;mutatói legyenek valós&lt;br&gt;időben követhetők." style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="470" y="45" width="200" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="«requirement»&lt;br&gt;&lt;b&gt;Adatgyűjtés&lt;/b&gt;&lt;hr&gt;id = K1&lt;br&gt;text = állapot, °C, mm/s, db&lt;br&gt;1 Hz mintavétellel" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="20" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.10;entryY=1;" edge="1" parent="1" source="c4" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="«requirement»&lt;br&gt;&lt;b&gt;Késleltetés&lt;/b&gt;&lt;hr&gt;id = K2&lt;br&gt;text = p99 &amp;lt; 100 ms&lt;br&gt;szimulátor → feldolgozó" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="208" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.26;entryY=1;" edge="1" parent="1" source="c6" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="«requirement»&lt;br&gt;&lt;b&gt;OEE számítás&lt;/b&gt;&lt;hr&gt;id = K3&lt;br&gt;text = A, P, Q, OEE&lt;br&gt;±1 %-os eltéréssel" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="396" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.42;entryY=1;" edge="1" parent="1" source="c8" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="«requirement»&lt;br&gt;&lt;b&gt;Túlmelegedés&lt;/b&gt;&lt;hr&gt;id = K4&lt;br&gt;text = riasztás 75 °C felett,&lt;br&gt;a 90 °C-os leállás előtt" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="584" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.58;entryY=1;" edge="1" parent="1" source="c10" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="«requirement»&lt;br&gt;&lt;b&gt;Rezgés&lt;/b&gt;&lt;hr&gt;id = K5&lt;br&gt;text = riasztás 4,5 mm/s felett&lt;br&gt;1 s-on belül" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="772" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.74;entryY=1;" edge="1" parent="1" source="c12" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="«requirement»&lt;br&gt;&lt;b&gt;Kapcsolatkiesés&lt;/b&gt;&lt;hr&gt;id = K6&lt;br&gt;text = észlelés 8 s-on belül" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="960" y="210" width="175" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;endArrow=circlePlus;endFill=0;endSize=10;exitX=0.5;exitY=0;entryX=0.90;entryY=1;" edge="1" parent="1" source="c14" target="c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="«block»&lt;br&gt;&lt;b&gt;szimulator.py&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c16" target="c4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="«block»&lt;br&gt;&lt;b&gt;Mosquitto broker&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="218" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c18" target="c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="«block»&lt;br&gt;&lt;b&gt;feldolgozo.py&lt;br&gt;(CellaFigyelo)&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="406" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c20" target="c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" value="«block»&lt;br&gt;&lt;b&gt;Hatarertek&lt;br&gt;(75 °C, hiszt. 5 °C)&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="594" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c22" target="c10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" value="«block»&lt;br&gt;&lt;b&gt;Hatarertek&lt;br&gt;(4,5 mm/s)&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="782" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c24" target="c12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" value="«block»&lt;br&gt;&lt;b&gt;watchdog + LWT&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=center;verticalAlign=top;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="970" y="370" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" value="«satisfy»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;" edge="1" parent="1" source="c26" target="c14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" value="«testCase»&lt;br&gt;&lt;b&gt;T1 normál működés&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c28" target="c4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="22" y="517" />
+              <mxPoint x="22" y="335" />
+              <mxPoint x="37" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c30" value="«testCase»&lt;br&gt;&lt;b&gt;késleltetésmérés&lt;br&gt;(QoS 0/1/2)&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="218" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c30" target="c6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="517" />
+              <mxPoint x="210" y="335" />
+              <mxPoint x="225" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c32" value="«testCase»&lt;br&gt;&lt;b&gt;T2 leállás +&lt;br&gt;egységtesztek&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="406" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c32" target="c8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="398" y="517" />
+              <mxPoint x="398" y="335" />
+              <mxPoint x="413" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c34" value="«testCase»&lt;br&gt;&lt;b&gt;T3 túlmelegedés&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="594" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c34" target="c10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="586" y="517" />
+              <mxPoint x="586" y="335" />
+              <mxPoint x="601" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c36" value="«testCase»&lt;br&gt;&lt;b&gt;T4 rezgés&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="782" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c36" target="c12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="774" y="517" />
+              <mxPoint x="774" y="335" />
+              <mxPoint x="789" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c38" value="«testCase»&lt;br&gt;&lt;b&gt;T5, T6 kiesés&lt;/b&gt;" style="whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;align=left;verticalAlign=top;spacingLeft=6;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="970" y="490" width="155" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c39" value="«verify»" style="html=1;fontSize=11;endArrow=classic;rounded=0;labelBackgroundColor=#ffffff;dashed=1;endArrow=open;endSize=8;exitX=0;exitY=0.5;entryX=0.1;entryY=1;" edge="1" parent="1" source="c38" target="c14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="962" y="517" />
+              <mxPoint x="962" y="335" />
+              <mxPoint x="977" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
