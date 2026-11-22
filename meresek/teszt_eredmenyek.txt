@@ -1,0 +1,15 @@
+2026-11-22 04:46
+T1 normal mukodes            | elvart: nincs riasztas                     | kapott: 0 riasztas                         | OK
+T1 rendelkezesre allas       | elvart: A = 1.00                           | kapott: A = 1.000                          | OK
+T1 OEE                       | elvart: 0.85 < OEE <= 1                    | kapott: OEE = 0.909                        | OK
+T2 leallas, A (elmeleti)     | elvart: A = 0.667 +- 0.05                  | kapott: A = 0.667                          | OK
+T2 leallas, A (fuggetlen)    | elvart: A = 0.667 +- 0.01                  | kapott: A = 0.667                          | OK
+T3 tulmelegedes riasztas     | elvart: riasztas, T > 75 C                 | kapott: T = 75.1 C                         | OK
+T3 elorejelzesi ido          | elvart: riasztas a leallas elott           | kapott: 168 s-mal elotte (szim. ido)       | OK
+T4 rezges riasztas           | elvart: riasztas < 1 s alatt               | kapott: 0.05 s, 5.72 mm/s                  | OK
+T4 rezges megszunik          | elvart: riasztas 'ki' allapot              | kapott: megjott                            | OK
+T5 folyamat leall            | elvart: riasztas < 8 s                     | kapott: 0.00 s (lwt)                       | OK
+T5 LWT uzenet                | elvart: offline < 8 s (keepalive 5 s)      | kapott: 0.00 s                             | OK
+T6 halozatkieses, watchdog   | elvart: riasztas 5-6 s kozott              | kapott: 5.03 s (timeout)                   | OK
+T6 LWT uzenet                | elvart: offline kb. 7,5 s (1,5 x keepalive) | kapott: 7.85 s                             | OK
+T6 helyreallas               | elvart: riasztas 'ki' kb. 15 s utan        | kapott: 16.27 s                            | OK
