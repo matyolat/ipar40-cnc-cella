@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+naplo/
+nodered/node_modules/
+nodered/.config*
+nodered/.flows*.backup
+nodered/flows_cred.json
+nodered/settings.js
+nodered/lib/
+*.pyc
+~$*
+*.tmp
