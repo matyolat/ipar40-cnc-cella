@@ -1,0 +1,1128 @@
+[
+ {
+  "id": "tab1",
+  "type": "tab",
+  "label": "CNC cella 1",
+  "disabled": false,
+  "info": ""
+ },
+ {
+  "id": "broker1",
+  "type": "mqtt-broker",
+  "name": "helyi mosquitto",
+  "broker": "localhost",
+  "port": "1883",
+  "clientid": "nodered_dashboard",
+  "autoConnect": true,
+  "usetls": false,
+  "protocolVersion": "4",
+  "keepalive": "30",
+  "cleansession": true,
+  "autoUnsubscribe": true
+ },
+ {
+  "id": "uibase1",
+  "type": "ui-base",
+  "name": "CNC",
+  "path": "/dashboard",
+  "includeClientData": true,
+  "acceptsClientConfig": [
+   "ui-notification",
+   "ui-control"
+  ],
+  "showPathInSidebar": false,
+  "navigationStyle": "default",
+  "titleBarStyle": "default"
+ },
+ {
+  "id": "theme1",
+  "type": "ui-theme",
+  "name": "alap",
+  "colors": {
+   "surface": "#455a64",
+   "primary": "#0277bd",
+   "bgPage": "#eeeeee",
+   "groupBg": "#ffffff",
+   "groupOutline": "#cccccc"
+  },
+  "sizes": {
+   "density": "default",
+   "pagePadding": "12px",
+   "groupGap": "12px",
+   "groupBorderRadius": "4px",
+   "widgetGap": "12px"
+  }
+ },
+ {
+  "id": "page1",
+  "type": "ui-page",
+  "name": "CNC cella 1",
+  "ui": "uibase1",
+  "path": "/cella1",
+  "icon": "factory",
+  "layout": "grid",
+  "theme": "theme1",
+  "order": 1,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "breakpoints": [
+   {
+    "name": "Default",
+    "px": "0",
+    "cols": "3"
+   },
+   {
+    "name": "Tablet",
+    "px": "576",
+    "cols": "6"
+   },
+   {
+    "name": "Small Desktop",
+    "px": "768",
+    "cols": "9"
+   },
+   {
+    "name": "Desktop",
+    "px": "1024",
+    "cols": "12"
+   }
+  ]
+ },
+ {
+  "id": "g_gep",
+  "type": "ui-group",
+  "name": "Gép állapota",
+  "page": "page1",
+  "width": "4",
+  "height": "1",
+  "order": 1,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "g_kpi",
+  "type": "ui-group",
+  "name": "Mutatók (műszak eleje óta)",
+  "page": "page1",
+  "width": "8",
+  "height": "1",
+  "order": 2,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "g_trend",
+  "type": "ui-group",
+  "name": "Trend",
+  "page": "page1",
+  "width": "12",
+  "height": "1",
+  "order": 3,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "g_vez",
+  "type": "ui-group",
+  "name": "Kezelés / hibainjektálás",
+  "page": "page1",
+  "width": "4",
+  "height": "1",
+  "order": 4,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "g_riaszt",
+  "type": "ui-group",
+  "name": "Riasztások",
+  "page": "page1",
+  "width": "8",
+  "height": "1",
+  "order": 5,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "in_tel",
+  "type": "mqtt in",
+  "z": "tab1",
+  "name": "",
+  "topic": "cella1/cnc1/telemetria",
+  "qos": "1",
+  "datatype": "json",
+  "broker": "broker1",
+  "nl": false,
+  "rap": true,
+  "rh": 0,
+  "inputs": 0,
+  "x": 140,
+  "y": 100,
+  "wires": [
+   [
+    "f_tel"
+   ]
+  ]
+ },
+ {
+  "id": "f_tel",
+  "type": "function",
+  "z": "tab1",
+  "name": "szétbontás",
+  "func": "const d = msg.payload;\nconst kesl = Date.now() - d.ts * 1000;\nreturn [\n    { payload: d.allapot },\n    { payload: d.orso_hom_C },\n    { payload: d.rezges_mm_s },\n    { topic: \"orsó hőm. [°C]\", payload: d.orso_hom_C },\n    { topic: \"rezgés [mm/s]\", payload: d.rezges_mm_s },\n    { payload: d.darab + \" db (selejt: \" + d.selejt + \")\" },\n    { payload: kesl < 1 ? \"< 1 ms\" : kesl.toFixed(1) + \" ms\" }\n];",
+  "outputs": 7,
+  "timeout": 0,
+  "noerr": 0,
+  "initialize": "",
+  "finalize": "",
+  "libs": [],
+  "x": 400,
+  "y": 100,
+  "wires": [
+   [
+    "t_all"
+   ],
+   [
+    "ga_hom"
+   ],
+   [
+    "ga_rez"
+   ],
+   [
+    "ch_hom"
+   ],
+   [
+    "ch_rez"
+   ],
+   [
+    "t_darab"
+   ],
+   [
+    "t_kesl"
+   ]
+  ]
+ },
+ {
+  "id": "t_all",
+  "type": "ui-text",
+  "z": "tab1",
+  "group": "g_gep",
+  "order": 1,
+  "width": 0,
+  "height": 0,
+  "name": "",
+  "label": "Állapot",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 700,
+  "y": 100,
+  "wires": []
+ },
+ {
+  "id": "ga_hom",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_gep",
+  "order": 2,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "Orsó hőmérséklet",
+  "units": "°C",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#5cd65c"
+   },
+   {
+    "from": "60",
+    "color": "#ffc800"
+   },
+   {
+    "from": "75",
+    "color": "#ea5353"
+   }
+  ],
+  "min": 0,
+  "max": 100,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 160,
+  "wires": []
+ },
+ {
+  "id": "ga_rez",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_gep",
+  "order": 3,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "Rezgés (RMS)",
+  "units": "mm/s",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#5cd65c"
+   },
+   {
+    "from": "2.8",
+    "color": "#ffc800"
+   },
+   {
+    "from": "4.5",
+    "color": "#ea5353"
+   }
+  ],
+  "min": 0,
+  "max": 10,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 220,
+  "wires": []
+ },
+ {
+  "id": "t_darab",
+  "type": "ui-text",
+  "z": "tab1",
+  "group": "g_gep",
+  "order": 4,
+  "width": 0,
+  "height": 0,
+  "name": "",
+  "label": "Darabszám",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 700,
+  "y": 280,
+  "wires": []
+ },
+ {
+  "id": "t_kesl",
+  "type": "ui-text",
+  "z": "tab1",
+  "group": "g_gep",
+  "order": 6,
+  "width": 0,
+  "height": 0,
+  "name": "",
+  "label": "Késleltetés (szim. → műszerfal)",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 700,
+  "y": 340,
+  "wires": []
+ },
+ {
+  "id": "ch_hom",
+  "type": "ui-chart",
+  "z": "tab1",
+  "group": "g_trend",
+  "name": "",
+  "label": "Orsó hőmérséklet",
+  "order": 1,
+  "chartType": "line",
+  "category": "topic",
+  "categoryType": "msg",
+  "xAxisLabel": "",
+  "xAxisProperty": "",
+  "xAxisPropertyType": "timestamp",
+  "xAxisType": "time",
+  "xAxisFormat": "",
+  "xAxisFormatType": "auto",
+  "xmin": "",
+  "xmax": "",
+  "yAxisLabel": "°C",
+  "yAxisProperty": "payload",
+  "yAxisPropertyType": "msg",
+  "ymin": "0",
+  "ymax": "100",
+  "action": "append",
+  "stackSeries": false,
+  "pointShape": "false",
+  "pointRadius": 4,
+  "showLegend": true,
+  "removeOlder": "10",
+  "removeOlderUnit": "60",
+  "removeOlderPoints": "",
+  "colors": [
+   "#ff7f0e"
+  ],
+  "textColor": [
+   "#666666"
+  ],
+  "textColorDefault": true,
+  "gridColor": [
+   "#e5e5e5"
+  ],
+  "gridColorDefault": true,
+  "width": 6,
+  "height": 5,
+  "className": "",
+  "interpolation": "linear",
+  "x": 700,
+  "y": 400,
+  "wires": [
+   []
+  ]
+ },
+ {
+  "id": "ch_rez",
+  "type": "ui-chart",
+  "z": "tab1",
+  "group": "g_trend",
+  "name": "",
+  "label": "Rezgés",
+  "order": 2,
+  "chartType": "line",
+  "category": "topic",
+  "categoryType": "msg",
+  "xAxisLabel": "",
+  "xAxisProperty": "",
+  "xAxisPropertyType": "timestamp",
+  "xAxisType": "time",
+  "xAxisFormat": "",
+  "xAxisFormatType": "auto",
+  "xmin": "",
+  "xmax": "",
+  "yAxisLabel": "mm/s",
+  "yAxisProperty": "payload",
+  "yAxisPropertyType": "msg",
+  "ymin": "0",
+  "ymax": "10",
+  "action": "append",
+  "stackSeries": false,
+  "pointShape": "false",
+  "pointRadius": 4,
+  "showLegend": true,
+  "removeOlder": "10",
+  "removeOlderUnit": "60",
+  "removeOlderPoints": "",
+  "colors": [
+   "#1f77b4"
+  ],
+  "textColor": [
+   "#666666"
+  ],
+  "textColorDefault": true,
+  "gridColor": [
+   "#e5e5e5"
+  ],
+  "gridColorDefault": true,
+  "width": 6,
+  "height": 5,
+  "className": "",
+  "interpolation": "linear",
+  "x": 700,
+  "y": 460,
+  "wires": [
+   []
+  ]
+ },
+ {
+  "id": "in_kapcs",
+  "type": "mqtt in",
+  "z": "tab1",
+  "name": "",
+  "topic": "cella1/cnc1/kapcsolat",
+  "qos": "1",
+  "datatype": "utf8",
+  "broker": "broker1",
+  "nl": false,
+  "rap": true,
+  "rh": 0,
+  "inputs": 0,
+  "x": 140,
+  "y": 520,
+  "wires": [
+   [
+    "t_kapcs"
+   ]
+  ]
+ },
+ {
+  "id": "t_kapcs",
+  "type": "ui-text",
+  "z": "tab1",
+  "group": "g_gep",
+  "order": 5,
+  "width": 0,
+  "height": 0,
+  "name": "",
+  "label": "Szimulátor kapcsolat",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 700,
+  "y": 520,
+  "wires": []
+ },
+ {
+  "id": "in_kpi",
+  "type": "mqtt in",
+  "z": "tab1",
+  "name": "",
+  "topic": "cella1/cnc1/kpi",
+  "qos": "1",
+  "datatype": "json",
+  "broker": "broker1",
+  "nl": false,
+  "rap": true,
+  "rh": 0,
+  "inputs": 0,
+  "x": 140,
+  "y": 580,
+  "wires": [
+   [
+    "f_kpi"
+   ]
+  ]
+ },
+ {
+  "id": "f_kpi",
+  "type": "function",
+  "z": "tab1",
+  "name": "kpi %",
+  "func": "const k = msg.payload;\nconst sz = v => Math.round(v * 1000) / 10;\nreturn [\n    { payload: sz(k.rendelkezesre_allas) },\n    { payload: sz(k.teljesitmeny) },\n    { payload: sz(k.minoseg) },\n    { payload: sz(k.oee) },\n    { payload: (k.futasi_ido_s / 60).toFixed(1) + \" / \" + (k.tervezett_ido_s / 60).toFixed(1) + \" perc\" }\n];",
+  "outputs": 5,
+  "timeout": 0,
+  "noerr": 0,
+  "initialize": "",
+  "finalize": "",
+  "libs": [],
+  "x": 400,
+  "y": 580,
+  "wires": [
+   [
+    "ga_a"
+   ],
+   [
+    "ga_p"
+   ],
+   [
+    "ga_q"
+   ],
+   [
+    "ga_oee"
+   ],
+   [
+    "t_ido"
+   ]
+  ]
+ },
+ {
+  "id": "ga_a",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_kpi",
+  "order": 1,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "Rendelkezésre állás",
+  "units": "%",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#ea5353"
+   },
+   {
+    "from": "60",
+    "color": "#ffc800"
+   },
+   {
+    "from": "85",
+    "color": "#5cd65c"
+   }
+  ],
+  "min": 0,
+  "max": 100,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 580,
+  "wires": []
+ },
+ {
+  "id": "ga_p",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_kpi",
+  "order": 2,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "Teljesítmény",
+  "units": "%",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#ea5353"
+   },
+   {
+    "from": "60",
+    "color": "#ffc800"
+   },
+   {
+    "from": "85",
+    "color": "#5cd65c"
+   }
+  ],
+  "min": 0,
+  "max": 100,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 640,
+  "wires": []
+ },
+ {
+  "id": "ga_q",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_kpi",
+  "order": 3,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "Minőség",
+  "units": "%",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#ea5353"
+   },
+   {
+    "from": "60",
+    "color": "#ffc800"
+   },
+   {
+    "from": "85",
+    "color": "#5cd65c"
+   }
+  ],
+  "min": 0,
+  "max": 100,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 700,
+  "wires": []
+ },
+ {
+  "id": "ga_oee",
+  "type": "ui-gauge",
+  "z": "tab1",
+  "name": "",
+  "group": "g_kpi",
+  "order": 4,
+  "value": "payload",
+  "valueType": "msg",
+  "width": 2,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "rounded",
+  "title": "OEE",
+  "units": "%",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": "0",
+    "color": "#ea5353"
+   },
+   {
+    "from": "60",
+    "color": "#ffc800"
+   },
+   {
+    "from": "85",
+    "color": "#5cd65c"
+   }
+  ],
+  "min": 0,
+  "max": 100,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "x": 700,
+  "y": 760,
+  "wires": []
+ },
+ {
+  "id": "t_ido",
+  "type": "ui-text",
+  "z": "tab1",
+  "group": "g_kpi",
+  "order": 5,
+  "width": 0,
+  "height": 0,
+  "name": "",
+  "label": "Futási idő / tervezett idő",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 700,
+  "y": 820,
+  "wires": []
+ },
+ {
+  "id": "in_r",
+  "type": "mqtt in",
+  "z": "tab1",
+  "name": "",
+  "topic": "cella1/cnc1/riasztas",
+  "qos": "1",
+  "datatype": "json",
+  "broker": "broker1",
+  "nl": false,
+  "rap": true,
+  "rh": 0,
+  "inputs": 0,
+  "x": 140,
+  "y": 880,
+  "wires": [
+   [
+    "f_r"
+   ]
+  ]
+ },
+ {
+  "id": "f_r",
+  "type": "function",
+  "z": "tab1",
+  "name": "riasztás formázás",
+  "func": "const r = msg.payload;\nconst nevek = {\n    orso_hom_C: \"Orsó túlmelegedés\",\n    rezges_mm_s: \"Nagy rezgés\",\n    gephiba: \"Géphiba (leállt)\",\n    kapcsolat: \"Kapcsolatkiesés\"\n};\nconst nev = nevek[r.tipus] || r.tipus;\nconst ido = new Date(r.ts * 1000).toLocaleTimeString(\"hu-HU\");\nlet sor = {\n    \"Idő\": ido,\n    \"Riasztás\": nev,\n    \"Állapot\": r.allapot == \"be\" ? \"AKTÍV\" : \"megszűnt\",\n    \"Érték\": r.ertek == null ? \"\" : String(r.ertek)\n};\nlet lista = context.get(\"lista\") || [];\nlista.unshift(sor);\nlista = lista.slice(0, 15);\ncontext.set(\"lista\", lista);\n\nlet ertesites = null;\nif (r.allapot == \"be\") {\n    ertesites = { payload: ido + \" - \" + nev + (r.ertek != null ? \" (\" + r.ertek + \")\" : \"\") };\n}\nreturn [{ payload: lista }, ertesites];",
+  "outputs": 2,
+  "timeout": 0,
+  "noerr": 0,
+  "initialize": "",
+  "finalize": "",
+  "libs": [],
+  "x": 400,
+  "y": 880,
+  "wires": [
+   [
+    "tbl_r"
+   ],
+   [
+    "notif"
+   ]
+  ]
+ },
+ {
+  "id": "tbl_r",
+  "type": "ui-table",
+  "z": "tab1",
+  "group": "g_riaszt",
+  "name": "",
+  "label": "",
+  "order": 1,
+  "width": 0,
+  "height": 0,
+  "maxrows": 15,
+  "passthru": false,
+  "autocols": true,
+  "showSearch": false,
+  "deselect": true,
+  "selectionType": "none",
+  "columns": [],
+  "mobileBreakpoint": "sm",
+  "mobileBreakpointType": "defaults",
+  "action": "replace",
+  "className": "",
+  "x": 700,
+  "y": 880,
+  "wires": []
+ },
+ {
+  "id": "notif",
+  "type": "ui-notification",
+  "z": "tab1",
+  "ui": "uibase1",
+  "position": "top right",
+  "colorDefault": false,
+  "color": "#ea5353",
+  "displayTime": "6",
+  "showCountdown": true,
+  "outputs": 0,
+  "allowDismiss": true,
+  "dismissText": "OK",
+  "allowConfirm": false,
+  "confirmText": "",
+  "raw": false,
+  "className": "",
+  "name": "riasztás popup",
+  "x": 700,
+  "y": 940,
+  "wires": []
+ },
+ {
+  "id": "btn_inditas",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Indítás",
+  "order": 1,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"inditas\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#2e7d32",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1000,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "btn_leallas",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Leállítás",
+  "order": 2,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"leallas\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#616161",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1060,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "btn_tulmelegedes",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Túlmelegedés",
+  "order": 3,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"tulmelegedes\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#c62828",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1120,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "btn_rezges",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Rezgés hiba",
+  "order": 4,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"rezges\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#ef6c00",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1180,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "btn_halozat",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Hálózati hiba",
+  "order": 5,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"halozat\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#6a1b9a",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1240,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "btn_normal",
+  "type": "ui-button",
+  "z": "tab1",
+  "group": "g_vez",
+  "name": "",
+  "label": "Hiba törlése",
+  "order": 6,
+  "width": "2",
+  "height": "1",
+  "emulateClick": false,
+  "tooltip": "",
+  "color": "",
+  "bgcolor": "",
+  "className": "",
+  "icon": "",
+  "iconPosition": "left",
+  "payload": "{\"parancs\": \"normal\"}",
+  "payloadType": "json",
+  "topic": "cella1/cnc1/parancs",
+  "topicType": "str",
+  "buttonColor": "#0277bd",
+  "textColor": "#ffffff",
+  "iconColor": "",
+  "enableClick": true,
+  "enablePointerdown": false,
+  "pointerdownPayload": "",
+  "pointerdownPayloadType": "str",
+  "enablePointerup": false,
+  "pointerupPayload": "",
+  "pointerupPayloadType": "str",
+  "x": 140,
+  "y": 1300,
+  "wires": [
+   [
+    "out_cmd"
+   ]
+  ]
+ },
+ {
+  "id": "out_cmd",
+  "type": "mqtt out",
+  "z": "tab1",
+  "name": "parancs",
+  "topic": "",
+  "qos": "1",
+  "retain": "false",
+  "respTopic": "",
+  "contentType": "",
+  "userProps": "",
+  "correl": "",
+  "expiry": "",
+  "broker": "broker1",
+  "x": 400,
+  "y": 1360,
+  "wires": []
+ }
+]

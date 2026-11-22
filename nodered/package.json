@@ -1,0 +1,1 @@
+{"name":"cnc-cella-nodered","private":true,"dependencies":{"@flowfuse/node-red-dashboard":"^1.37.0","node-red":"^4.1.18"}}
